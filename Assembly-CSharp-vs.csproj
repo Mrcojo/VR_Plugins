@@ -63,6 +63,7 @@
      <Compile Include="Assets\OVR\Scripts\Util\OVRVisionGuide.cs" />
      <Compile Include="Assets\Scripts\Events.cs" />
      <Compile Include="Assets\Scripts\InteractiveButtonFactory.cs" />
+     <Compile Include="Assets\Scripts\VR_Developer_Manager.cs" />
      <Compile Include="Assets\Scripts\VR_Interaction.cs" />
      <None Include="Assets\Plugins\donotdelete.txt" />
      <None Include="Assets\Plugins\x86_64\donotdelete.txt" />

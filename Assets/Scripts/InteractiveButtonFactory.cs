@@ -2,10 +2,8 @@
 using System.Collections;
 
 public class InteractiveButtonFactory : MonoBehaviour {
-	public GameObject interactiveButtons;
 	public GameObject buttonPrefab;
-
-	private GameObject pointer;
+	
 	private GameObject button;
 
 	void OnEnable()
