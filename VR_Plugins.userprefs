@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Events.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\VR_Developer\Manager\VR_Developer_Manager.cs">
     <Files>
-      <File FileName="Assets\Scripts\InteractiveButtonFactory.cs" Line="8" Column="2" />
-      <File FileName="Assets\Scripts\VR_Interaction.cs" Line="20" Column="33" />
-      <File FileName="Assets\Scripts\Events.cs" Line="84" Column="20" />
+      <File FileName="Assets\Scripts\VR_Developer\Headset\VR_Developer_Headset_Hud.cs" Line="16" Column="72" />
+      <File FileName="Assets\Scripts\VR_Developer\Manager\VR_Developer_Manager.cs" Line="44" Column="4" />
+      <File FileName="Assets\Scripts\VR_Utilities\VR_Utility_PrefabFactory.cs" Line="12" Column="12" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

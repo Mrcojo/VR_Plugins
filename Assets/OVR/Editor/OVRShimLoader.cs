@@ -43,7 +43,7 @@ class OVRShimLoader
 // forcibly enable exclusive mode only in Unity 4.5.5 or later
 #if (UNITY_5 || UNITY_4_6 || (UNITY_4_5 && !(UNITY_4_5_0 || UNITY_4_5_1 || UNITY_4_5_2 || UNITY_4_5_3 || UNITY_4_5_4)))
 		PlayerSettings.d3d9FullscreenMode = D3D9FullscreenMode.ExclusiveMode;
-		PlayerSettings.d3d11ForceExclusiveMode = false; // TODO: Re-enable when DX11 exclusive mode issue in 4.5.5 is fixed
+		//PlayerSettings.d3d11ForceExclusiveMode = false; // TODO: Re-enable when DX11 exclusive mode issue in 4.5.5 is fixed
 		PlayerSettings.visibleInBackground = true;
 #endif
 	}
