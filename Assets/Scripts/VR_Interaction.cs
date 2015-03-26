@@ -20,18 +20,7 @@ public class VR_Interaction : MonoBehaviour {
 		if (Physics.Raycast(transform.position, transform.forward, out hit)) {
 			pointer.transform.position = hit.point;
 			if (Input.GetKeyUp(KeyCode.Space)) {
-				object [] parameters = new object[4];
-				parameters[0] = hit;
-				Events.fire ("testEventVR", parameters);
-				
-				/*Debug.Log(hit.collider.gameObject.name);
-				if (hit.collider.gameObject.tag == "InteractiveButton") {
-					Destroy(hit.collider.gameObject);
-				}
-				else {
-					button = Instantiate(buttonPrefab, hit.point, Quaternion.identity) as GameObject;
-					button.name = "InteractiveButton";
-				}*/
+				Events.Fire ("testEventVR", hit, "testString", 37);
 			}
 		}
 	}

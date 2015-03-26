@@ -1,144 +1,99 @@
 using UnityEngine;
 using System.Collections.Generic;
-	
+
 public static class Events  {	
-	
-	public delegate void CallbackHandler();
-	public delegate void DataCallbackHandler(object[] parameters);
 
-	private static Dictionary<int, List<CallbackHandler>> listners = new Dictionary<int, List<CallbackHandler>>();
-	private static Dictionary<int, List<DataCallbackHandler>> dataListners = new Dictionary<int, List<DataCallbackHandler>>();
-	
+
 	/*
-	 * On methods
+	 * The delegate of the callback handler and the dictionary to store all the handlers subscribed
+	 */
+	public delegate void Handler(object[] parameters);
+	private static Dictionary<int, List<Handler>> listeners = new Dictionary<int, List<Handler>>();
+
+
+	/*
+	 * On method
 	 */
 	
-	public static void on(string eventName, CallbackHandler handler) {
-		addListener(eventName.GetHashCode(), handler, eventName);
-	}
-
-	private static void addListener(int eventID, CallbackHandler handler, string eventGraphName) {
-		if(listners.ContainsKey(eventID)) {
-			listners[eventID].Add(handler);
-		} else {
-			List<CallbackHandler> handlers =  new  List<CallbackHandler>();
-			handlers.Add(handler);
-			listners.Add(eventID, handlers);
-		}
+	public static void On(string eventName, Handler handler) {
+		AddListener(eventName.GetHashCode(), eventName, handler);
 	}
 	
-	public static void on(string eventName, DataCallbackHandler handler) {
-		addListener(eventName.GetHashCode(), handler, eventName);
-	}
-
-	private static void addListener(int eventID, DataCallbackHandler handler,  string eventGraphName) {
-		if(dataListners.ContainsKey(eventID)) {
-			dataListners[eventID].Add(handler);
+	private static void AddListener(int eventID, string eventGraphName, Handler handler) {
+		if(listeners.ContainsKey(eventID)) {
+			listeners[eventID].Add(handler);
 		} else {
-			List<DataCallbackHandler> handlers =  new  List<DataCallbackHandler>();
+			List<Handler> handlers =  new  List<Handler>();
 			handlers.Add(handler);
-			dataListners.Add(eventID, handlers);
+			listeners.Add(eventID, handlers);
 		}
 	}
 	
 	
 	/*
-	 * Off methods
+	 * Off method
 	 */
 	
-	public static void off(string eventName, CallbackHandler handler) {
-		removeListener(eventName.GetHashCode(), handler, eventName);
-	}
-
-	public static void removeListener(int eventID, CallbackHandler handler, string eventGraphName) {
-		if(listners.ContainsKey(eventID)) {
-			List<CallbackHandler> handlers =  listners[eventID];
-			handlers.Remove(handler);
-
-			if(handlers.Count == 0) {
-				listners.Remove(eventID);
-			}
-		}
+	public static void Off(string eventName, Handler handler)  {
+		RemoveListener(eventName.GetHashCode(), eventName, handler);
 	}
 	
-	public static void off(string eventName, DataCallbackHandler handler)  {
-		removeListener(eventName.GetHashCode(), handler, eventName);
-	}
-
-	public static void removeListener(int eventID, DataCallbackHandler handler, string eventGraphName) {
-		if(dataListners.ContainsKey(eventID)) {
-			List<DataCallbackHandler> handlers =  dataListners[eventID];
+	public static void RemoveListener(int eventID, string eventGraphName, Handler handler) {
+		if(listeners.ContainsKey(eventID)) {
+			List<Handler> handlers =  listeners[eventID];
 			handlers.Remove(handler);
-
+			
 			if(handlers.Count == 0) {
-				dataListners.Remove(eventID);
+				listeners.Remove(eventID);
 			}
 		}
 	}
 	
 	
 	/*
-	 * Fire methods
+	 * Fire method
 	 */
 	
-	public static void fire(string eventName) {
-		fire(eventName.GetHashCode(), null, eventName);
+	public static void Fire(string eventName) {
+		Fire(eventName.GetHashCode(), eventName, null);
 	}
 	
-	public static void fire(string eventName, object[] data) {
-		fire(eventName.GetHashCode(), data, eventName);
+	public static void Fire(string eventName, params object[] data) {
+		Fire(eventName.GetHashCode(), eventName, data);
 	}
-
-	private static void fire(int eventID, object[] data, string eventName) {
-		if(dataListners.ContainsKey(eventID)) {
-			List<DataCallbackHandler>  handlers = cloneArray(dataListners[eventID]);
+	
+	private static void Fire(int eventID, string eventName, params object[] data) {
+		if(listeners.ContainsKey(eventID)) {
+			List<Handler>  handlers = CloneArray(listeners[eventID]);
 			int len = handlers.Count;
 			for(int i = 0; i < len; i++) {
 				handlers[i](data);
 			}
 		}
-		
-		if(listners.ContainsKey(eventID)) {
-			List<CallbackHandler>  handlers = cloneArray(listners[eventID]);
-			int len = handlers.Count;
-			for(int i = 0; i < len; i++) {
-				handlers[i]();
-			}
-		}	
 	}
 
 
 	/*
-	 * Public methods
+	 * Private service methods
 	 */
-
-	public static void clearEvents() {
-		listners.Clear();
-		dataListners.Clear();
-	}
-
-	/*
-	 * Private methods
-	 */
-
-	private static List<CallbackHandler> cloneArray(List<CallbackHandler> list) {
-		List<CallbackHandler> nl =  new List<CallbackHandler>();
-		int len = list.Count;
-		for(int i = 0; i < len; i++) {
-			nl.Add(list[i]);
-		}
-		
-		return nl;
-	}
 	
-	private static List<DataCallbackHandler> cloneArray(List<DataCallbackHandler> list) {
-		List<DataCallbackHandler> nl =  new List<DataCallbackHandler>();
+	private static List<Handler> CloneArray(List<Handler> list) {
+		List<Handler> nl =  new List<Handler>();
 		int len = list.Count;
 		for(int i = 0; i < len; i++) {
 			nl.Add(list[i]);
 		}
 		
 		return nl;
+	}
+
+
+	/*
+	 * Public service methods
+	 */
+	
+	public static void ClearEvents() {
+		listeners.Clear();
 	}
 }
 

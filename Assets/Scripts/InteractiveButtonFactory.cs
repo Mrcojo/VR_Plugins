@@ -10,12 +10,12 @@ public class InteractiveButtonFactory : MonoBehaviour {
 
 	void OnEnable()
 	{
-		Events.on ("testEventVR", PlaceButton);
+		Events.On ("testEventVR", PlaceButton);
 	}
 
 	void OnDisable()
 	{
-		Events.off ("testEventVR", PlaceButton);
+		Events.Off ("testEventVR", PlaceButton);
 	}
 
 	void Start() {
@@ -28,6 +28,8 @@ public class InteractiveButtonFactory : MonoBehaviour {
 
 	void PlaceButton (object[] parameters) {
 		RaycastHit hit = (RaycastHit) parameters [0];
+		string paramString = (string) parameters [1];
+		int paramNumber = (int) parameters [2];
 
 		if (hit.collider.gameObject.tag == "InteractiveButton") {
 			Destroy(hit.collider.gameObject);
@@ -36,5 +38,6 @@ public class InteractiveButtonFactory : MonoBehaviour {
 			button = Instantiate(buttonPrefab, hit.point, Quaternion.identity) as GameObject;
 			button.name = "InteractiveButton";
 		}
+		Debug.Log (hit + " - " + paramString + " - " + paramNumber);
 	}
 }
