@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\VR_Utility_PrefabPositioner.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\VR_Utility_PrefabPositioner_Editor.cs">
     <Files>
-      <File FileName="Assets\Scripts\VR_Utilities\VR_Utility_PrefabPositioner.cs" Line="21" Column="3" />
-      <File FileName="Assets\Editor\VR_Utility_PrefabPositioner.cs" Line="5" Column="48" />
+      <File FileName="Assets\Editor\VR_Utility_PrefabPositioner_Editor.cs" Line="30" Column="13" />
+      <File FileName="Assets\Scripts\VR_Utilities\VR_Utility_PrefabPositioner.cs" Line="81" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
